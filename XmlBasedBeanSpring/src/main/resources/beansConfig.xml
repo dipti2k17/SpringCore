@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+<bean id="name" name="name" class="com.spring.beans.entity.Name" autowire="byName"></bean>
+
+<bean id="language" class="com.spring.beans.entity.Language"></bean>
+<bean id="address" class="com.spring.beans.entity.Address" autowire="constructor"></bean>
+
+<bean id="userBean" name="userBean" class="com.spring.beans.entity.User"></bean>
+
+
+<!-- constructor argument resolution - type based -->
+
+<bean id="age" class="com.spring.beans.entity.Age">
+ <constructor-arg type="String" value="June"/>
+ <constructor-arg type="int" value="1989"/>  
+</bean>  
+
+<!-- Constructor argument index type -->
+
+<bean id="date" class="com.spring.beans.entity.Date">
+    <constructor-arg index="0" value="7"/>
+    <constructor-arg index="1" value="June"/>
+    <constructor-arg index="2" value="2020"/>
+</bean>
+
+<!-- Constructor argument name type -->
+
+<bean id="book" class="com.spring.beans.entity.Book">
+    <constructor-arg name="bookId" value="1"/>
+    <constructor-arg name="bookName" value="Basic C"/>
+</bean>
+<bean id="sessionFactoryUtil" class="com.spring.beans.hibernate.config.SessionFactoryUtil">
+</bean>
+
+<!-- 
+	<bean id="userBean" name="UserBean" class="com.spring.beans.entity.User">
+		<constructor-arg value="1" type="int"></constructor-arg>
+		<constructor-arg value="Raj"></constructor-arg>
+		<constructor-arg value="Raj"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>English</value>
+				<value>Spanish</value>
+				<value>German</value>
+				<value>French</value>
+			</list>
+		</constructor-arg>
+	</bean> -->
+	<!-- 
+	<bean id="userBean" name="UserBean" class="com.spring.beans.entity.User">
+		<constructor-arg value="1" type="int"></constructor-arg>
+		<constructor-arg value="Raj"></constructor-arg>
+		<constructor-arg value="Raj"></constructor-arg>
+		
+	<property name="languages">
+        <props>
+            <prop key="English">can write</prop>
+            <prop key="Spanish">can speak</prop>
+            <prop key="French">can speak</prop>
+        </props>
+    </property>
+    </bean> -->
+    
+    <!-- <bean id="userBean" name="UserBean" class="com.spring.beans.entity.User" lazy-init="true">
+		<constructor-arg value="1" type="int"></constructor-arg>
+		<constructor-arg value="Raj"></constructor-arg>
+		<constructor-arg value="Raj"></constructor-arg>
+    <property name="languages">
+        <map>
+            <entry key="Odisha" value="language:odiya"/>
+            <entry key ="Kanrataka" value="language:kannada"/>
+        </map>
+    </property>
+    </bean> -->
+    
+	
+</beans>

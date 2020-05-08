@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- services -->
+
+<!-- Constructor-based Dependency Injection -->
+   <!--  <bean id="userService" name="userService"
+    	class="com.spring.beans.service.impl.UserServiceImpl">
+    	<constructor-arg ref="accountDao"></constructor-arg>
+    </bean> -->
+    
+    
+   <!-- Setter-based Dependency Injection -->
+   
+    <!-- <bean id="userService" name="userService"
+    	class="com.spring.beans.service.impl.UserServiceImpl">
+    	<property name="accountDao" ref="accountDao"/>
+    </bean> -->
+    
+     <!-- Instantiation with a Static Factory Method -->
+   <!--   
+     <bean id="userService"
+    class="com.spring.beans.service.impl.UserServiceImpl"
+    factory-method="createInstance"/> -->
+
+
+<!-- c-namespace declaration with argument names -->
+    <bean id="userService" class="com.spring.beans.service.impl.UserServiceImpl" 
+    c:accountDao-ref="accountDao" lazy-init="true"/>
+
+    
+</beans>
