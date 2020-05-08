@@ -7,10 +7,14 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.spring.bean.test.AbstractNameFactory;
+import com.spring.bean.test.Car;
 import com.spring.bean.test.CurrentAddress;
 import com.spring.bean.test.Customer;
 import com.spring.bean.test.DefaultServiceLocator;
 import com.spring.bean.test.Demo1;
+import com.spring.bean.test.Demo2;
+import com.spring.bean.test.Demo3;
+import com.spring.bean.test.Location;
 import com.spring.bean.test.Outer.Inner;
 import com.spring.bean.test.ParentHome;
 
@@ -61,6 +65,14 @@ public class BeanTestApplication {
 		CurrentAddress childObj = applicationContext.getBean("currentAddress", CurrentAddress.class);
 		LOGGER.info("Cuurent Address : "+childObj.getCurrAddress()+" and Home address : "+childObj.getHomeAddress());
 
+		Location loc = applicationContext.getBean("location", Location.class);
+		LOGGER.info(loc.toString());
+		
+		/** Below code throws BeanCurrentlyInCreationException **/
+		
+		/*Demo2 d2 = applicationContext.getBean("demo2", Demo2.class);
+		Demo3 d3 = applicationContext.getBean("demo3", Demo3.class);*/
+		
 		applicationContext.close();
 	}
 
