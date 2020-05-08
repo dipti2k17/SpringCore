@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- Inner Bean -->
+
+	<bean id="customer" class="com.spring.bean.test.Customer">
+		<property name="person" ref="person" />
+	</bean>
+
+	<bean id="person" class="com.spring.bean.test.Person">
+		<property name="name" value="Dipti" />
+		<property name="address" value="address1" />
+		<property name="age" value="28" />
+	</bean>
+	
+	<!-- Inner Class bean reference -->
+	<bean id="innerBean" class="com.spring.bean.test.Outer$Inner"/>
+	
+	<!-- Instantiation with a Static Factory Method -->
+	<bean id="name" class="com.spring.bean.test.Name"
+        factory-method="getInstance">
+        <constructor-arg index="0" value="Dipti">
+        </constructor-arg>
+    </bean>
+    
+     <!--  Method Injection -->
+    <bean id="nameFactory"
+        class="com.spring.bean.test.AbstractNameFactory">
+        <lookup-method name="createName" bean="name" />
+    </bean>
+    
+    <!-- the factory bean, which contains a method called createInstance() -->
+<bean id="serviceLocator" class="com.spring.bean.test.DefaultServiceLocator">
+</bean>
+
+<!-- the bean to be created via the factory bean -->
+<bean id="emailService"
+      factory-bean="serviceLocator"
+      factory-method="createService"></bean>
+
+
+
+<!--  Bean definition inheritance -->
+
+<bean id = "parentAddress" class = "com.spring.bean.test.ParentHome">
+      <property name = "homeAddress" value = "Odisha"/>
+   </bean>
+
+   <bean id ="currentAddress" class = "com.spring.bean.test.CurrentAddress" parent = "parentAddress">
+      <property name = "currAddress" value = "Bangalore"/>
+   </bean>
+
+</beans>
