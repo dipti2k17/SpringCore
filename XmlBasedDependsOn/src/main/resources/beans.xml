@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+<!-- Bean dependency using depends-on -->
+
+<bean id="book" class="com.spring.model.Book"></bean>
+<bean id="libraryEntity" class="com.spring.model.LibraryEntity"></bean>
+<bean id="libraryDao" class="com.spring.model.dao.LibraryDao">
+<constructor-arg ref="sessionFactoryUtil" name="sessionFactoryUtil" />
+</bean>
+<bean id="sessionFactoryUtil" class="com.spring.model.hibernate.SessionFactoryUtil" />
+<bean id="library" class="com.spring.model.Library" depends-on="book,libraryDao">
+<property name="book" ref="book" />
+</bean>
+
+</beans>
