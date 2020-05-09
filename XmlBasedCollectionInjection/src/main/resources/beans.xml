@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+
+<bean id="collection" class="com.spring.beans.TypesCollection">
+      <property name="bookList">
+	  <list>
+	       <value>List Value A</value>
+	       <value>List Value B</value>
+	  </list>
+      </property>
+      <property name="bookSet">
+          <set>
+            <value>Set Value A</value>
+            <value>Set Value B</value>
+          </set>
+      </property>
+      <property name="bookMap">
+	 <map>
+            <entry key="0" value="Map Value A"/>           
+            <entry key="1" value="Map Value B"/>
+         </map>
+      </property>
+      <property name="bookProp">
+	<props>
+	    <prop key="propKeyA">Prop Value A</prop>
+	    <prop key="propKeyB">Prop Value B</prop>
+	</props>
+      </property>      
+      <property name="bookLists">
+      	<list>
+      	    <ref bean="book1"/>
+      	    <ref bean="book2"/>
+      	</list>
+      </property>
+    </bean>
+    <bean id="book1" class="com.spring.beans.Book">
+    	<property name="bookId" value="100"/>
+    	<property name="bookName" value="Godan"/>
+    </bean>
+    <bean id="book2" class="com.spring.beans.Book">
+    	<property name="bookId" value="200"/>
+    	<property name="bookName" value="Nirmla"/>
+    </bean>
+    <bean id="childBook" parent="collection">
+        <property name="bookProp">
+            <!-- the merge is specified on the child collection definition -->
+            <props merge="true">
+                <prop key="sales">sales Book</prop>
+                <prop key="support">adminsupport Book</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- Compound Property -->
+    <bean id="compoundDate" class="com.spring.beans.compoundproperty.Date">
+    <property name ="day" ref="day"/>
+    <property name="day.month.year" value="2020" />
+    </bean>
+  
+    <bean id="month" class="com.spring.beans.Month">
+    </bean>
+    <bean id="day" class="com.spring.beans.Day">
+    <property name="month" ref="month"></property>
+    </bean>
+</beans>
