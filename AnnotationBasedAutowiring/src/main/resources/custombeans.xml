@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+           
+<context:annotation-config/>
+		<bean id="customAutowireConfigurer" class="org.springframework.beans.factory.annotation.CustomAutowireConfigurer">
+                   <property name="customQualifierTypes">
+                     <set>
+                       <value>com.spring.java.annotation.customqualifier.CarQualifier</value>
+                       <value>com.spring.java.annotation.customqualifier.BusQualifier</value>
+                     </set>
+                   </property>
+                </bean>
+                
+<bean class="com.spring.java.annotation.service.impl.CarServiceImpl"/>
+		<bean class="com.spring.java.annotation.pojo.Car">
+			<qualifier type="CarQualifier"/>
+		</bean>		
+		<bean class="com.spring.java.annotation.pojo.Bus">
+			<qualifier type="BusQualifier"/>
+		</bean>                
+
+</beans>
