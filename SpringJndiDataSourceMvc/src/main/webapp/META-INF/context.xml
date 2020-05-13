@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+        <Manager pathname="" />
+        -->
+    <!-- Uncomment this to enable Comet connection tacking (provides events
+             on session expiration as well as webapp lifecycle) -->
+    <!--
+        <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+        -->
+
+
+ <!-- url: The JDBC connection url for connecting to your MySQL database.
+         -->
+
+  <Resource name="jdbc/test" auth="Container" type="javax.sql.DataSource"
+               maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+               username="root" password="root123" driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://localhost:3306/test"/>        
+        
+</Context>
